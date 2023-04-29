@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
+use App\Models\Genre;
 
 class BookController extends Controller
 {
@@ -28,7 +29,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('books.create');
+        $genres = Genre::all();
+        return view('books.create', compact('genres'));
     }
 
     /**
@@ -83,7 +85,7 @@ class BookController extends Controller
     {
         $data = $request->validate([
             'title' => 'required|max:255|min:3',
-            'copy_number' => 'numeric',
+            'copy_number' => 'required'
 
         ]);
         $book->update($data);

@@ -7,6 +7,8 @@
                     <p class="card-text"> {{ $book->title }}</p>
                     <div class="card-body">
                         <p class="card-text"> {{ $book->copy_number }}</p>
+                        {{-- @dump($book->genre->title) --}}
+                        <p>{{ $book->genre->title }}</p>
                     </div>
                     <a class="btn btn-primary" href="{{ route('books.edit', $book) }}">Modifica</a>
                     <form action="{{ route('books.destroy', $book) }}" method="POST">

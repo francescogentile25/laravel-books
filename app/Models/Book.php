@@ -13,4 +13,8 @@ class Book extends Model
         'title',
         'copy_number'
     ];
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class);
+    }
 }
