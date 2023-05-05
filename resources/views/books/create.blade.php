@@ -38,7 +38,25 @@
                     </div>
                 @enderror
             </div>
-
+            <div class="mb-3">
+                <label for="authors" class="form-label">Autori</label>
+                <div class="d-flex flex-wrap gap-3 @error('authors') is-invalid @enderror">
+                    @foreach ($authors as $key => $author)
+                        <div class="form-check">
+                            <input name='authors[]' @checked(in_array($author->id, old('authors', []))) class="form-check-input" type="checkbox"
+                                value="{{ $author->id }}" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                {{ $author->name }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
+                @error('authors')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
             <button type="submit" class="btn btn-primary">Aggiungi</button>
         </form>
 
